@@ -19,7 +19,14 @@ module.exports = {
     ]
   },
   devtool: 'inline-source-map',
-  resolve: { extensions: ["*", ".js", ".jsx"] },
+  resolve: { 
+      alias:{
+        pages: path.resolve(__dirname, './src/pages/'),
+        components: path.resolve(__dirname, './src/components/'),
+        layouts: path.resolve(__dirname, './src/layouts/'),
+        lib: path.resolve(__dirname,'./src/lib/')
+      },
+      extensions: ["*", ".js", ".jsx"] },
   output: {
     path: path.resolve(__dirname, "dist/"),
     publicPath: "/dist/",
