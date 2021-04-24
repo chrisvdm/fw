@@ -3,3 +3,5 @@ const StandardLayout= ({children}) => (<div>
 <main>{children}</main>
 <footer>footer</footer>
 </div>)
+
+export default StandardLayout
