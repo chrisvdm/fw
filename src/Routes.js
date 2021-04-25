@@ -8,11 +8,10 @@ const Routes = () => {
     return(
       <>
       <StandardLayout>
-      <Route path='/' Page={Home}/>
-      <Route path='/about' Page={About}/>
-      <Route path='/contact' Page={Contact}/>
-      </StandardLayout>
-      
+        <Route path='/' Page={Home} name='Home'/>
+        <Route path='/about' Page={About} name='About'/>
+        <Route path='/contact' Page={Contact} name='Contact'/>
+      </StandardLayout>    
       </>
     );
 }
