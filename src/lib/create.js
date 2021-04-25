@@ -11,12 +11,15 @@ const renderPageTemplate = n => {
         </>)`
 }
 
+const camelCase = w => w.charAt(0).toUpperCase() + w.slice(1)
+
 const createPage = pageName => {
-    console.log(`Creating ${name}Page page at "src/pages/${name}Page.js"`)
+    const page = camelCase(name)
+    console.log(`Creating ${page}Page page at "src/pages/${page}Page.js"`)
     
-    fs.writeFile(`./src/pages/${name}Page.js`, renderPageTemplate(name), function (err) {
+    fs.writeFile(`./src/pages/${page}Page.js`, renderPageTemplate(page), function (err) {
     if (err) throw err;
-    fs.appendFile('./src/pages/index.js',`export { default as ${name}Page } from './${name}Page.js'`, function(error){
+    fs.appendFile('./src/pages/index.js',`export { default as ${page}Page } from './${page}Page'`, function(error){
         if(error) throw error;
         console.log('Page successfully created');
     })
