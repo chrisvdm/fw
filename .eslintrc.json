@@ -1,7 +1,28 @@
-{
-    "plugins": ["prettier"],
+{ 
     "rules": {
-      "prettier/prettier": "error"
+        "quotes":["error", "single"],
+        "prettier/prettier": [
+            "warn",
+            {
+              "singleQuote": true,
+              "semi": false,
+              "trailingComma": "none"
+            }
+          ]
     },
-    // "extends": ["plugin:prettier/recommended"]
+    "plugins": ["prettier"],
+    "extends": ["plugin:prettier/recommended"],
+    "parserOptions": {
+        "ecmaVersion": 2017,
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "jsx": true,
+            "experimentalObjectRestSpread": true
+        }  
+    },
+    "env": {
+        "es6": true,
+        "node": true,
+        "browser": true
+    }
   }

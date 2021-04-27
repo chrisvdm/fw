@@ -5,13 +5,13 @@ import './main.css'
 
 const Routes = () => {
   return (
-      <>
-        <StandardLayout>
-        <Route path='/' Page={pages.Home} name='Home'/>
-        <Route path='/about' Page={pages.About} name='About'/>
-        <Route path='/contact' Page={pages.Contact} name='Contact'/>
+    <>
+      <StandardLayout>
+        <Route path="/" Page={pages.Home} name="Home" />
+        <Route path="/about" Page={pages.About} name="About" />
+        <Route path="/contact" Page={pages.Contact} name="Contact" />
       </StandardLayout>
-      </>
+    </>
   )
 }
 
