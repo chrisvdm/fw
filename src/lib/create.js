@@ -1,5 +1,8 @@
 var fs = require('fs')
 
+const routesFile = './src/Routes.js'
+const pageIndexFile = './src/pages/index.js'
+
 const args = process.argv.slice(2);
 const type = args[0]
 const name = args[1]
@@ -11,18 +14,44 @@ const renderPageTemplate = n => {
         </>)`
 }
 
+const findIndexAfterMatch = (text, searchTerm) => {
+    const firstPos = text.indexOf(searchTerm)
+    return searchTerm.length + firstPos
+}
+
+const insertString = (string, insert, pos) => {
+    const front = string.slice(0, pos)
+    const back = string.slice(-(string.length - pos))
+    return `${front}\n${insert}${back}`
+}
+
 const camelCase = w => w.charAt(0).toUpperCase() + w.slice(1)
 
 const createPage = pageName => {
+    // TODO: If unsuccessful undo changes
     const page = camelCase(name)
+
     console.log(`Creating ${page}Page page at "src/pages/${page}Page.js"`)
     
     fs.writeFile(`./src/pages/${page}Page.js`, renderPageTemplate(page), function (err) {
     if (err) throw err;
-    fs.appendFile('./src/pages/index.js',`export { default as ${page}Page } from './${page}Page'`, function(error){
-        if(error) throw error;
-        console.log('Page successfully created');
-    })
+
+    fs.appendFile(pageIndexFile,`\nexport { default as ${page}Page } from './${page}Page'`, function(appendIndexError){
+        if(appendIndexError) throw appendIndexError;
+            
+            fs.readFile(routesFile, 'utf8', (openRoutesError, routesData) => {
+                if (openRoutesError) throw openRoutesError
+                const newRouteIndex = findIndexAfterMatch(routesData, `<>`)
+                const newRoute = `<Route path='/${page}' Page={${page}Page} name='${page}'/>`
+                const newRoutesData = insertString(routesData, newRoute, newRouteIndex)
+            
+                fs.writeFile(routesFile, newRoutesData, (rewriteRoutesError) => {
+                    if(rewriteRoutesError) throw rewriteRoutesError
+                })
+            })
+            
+            console.log('Page successfully created');
+        })
   });
 }
 
