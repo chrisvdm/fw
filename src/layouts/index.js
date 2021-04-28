@@ -1,1 +1,1 @@
-export {default as StandardLayout} from './StandardLayout/StandardLayout.js'
+export { default as StandardLayout } from './StandardLayout/StandardLayout.js'

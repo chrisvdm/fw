@@ -1,3 +1,4 @@
+import { findIndexAfterMatch, insertString, camelCase } from './foo'
 const fs = require('fs')
 
 const routesFile = './src/Routes.js'
@@ -11,21 +12,9 @@ const renderPageTemplate = (n) => {
   return `const ${n}Page = () => (<>
         <h2>${n}</h2>
         <p>Welcome to your ${n} page. Navigate to 'src/pages/${n}.js' to edit</p>
-        </>)`
+        </>)
+        export default ${n}Page`
 }
-
-const findIndexAfterMatch = (text, searchTerm) => {
-  const firstPos = text.indexOf(searchTerm)
-  return searchTerm.length + firstPos
-}
-
-const insertString = (string, insert, pos) => {
-  const front = string.slice(0, pos)
-  const back = string.slice(-(string.length - pos))
-  return `${front}\n${insert}${back}`
-}
-
-const camelCase = (w) => w.charAt(0).toUpperCase() + w.slice(1)
 
 const createPage = (pageName) => {
   // TODO: If unsuccessful undo changes
