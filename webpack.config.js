@@ -2,7 +2,7 @@ const path = require('path')
 const webpack = require('webpack')
 
 module.exports = {
-  entry: './src/index.js',
+  entry: ['react-hot-loader/patch', './src/index.js'],
   mode: 'development',
   module: {
     rules: [
@@ -21,6 +21,7 @@ module.exports = {
   devtool: 'inline-source-map',
   resolve: {
     alias: {
+      'react-dom': '@hot-loader/react-dom',
       pages: path.resolve(__dirname, './src/pages/'),
       components: path.resolve(__dirname, './src/components/'),
       layouts: path.resolve(__dirname, './src/layouts/'),

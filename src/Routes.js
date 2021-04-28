@@ -1,7 +1,12 @@
+import { hot } from 'react-hot-loader/root'
 import { Route } from 'lib'
 import { StandardLayout } from 'layouts'
 import * as pages from 'pages'
 import './main.css'
+
+// setConfig({
+//   showReactDomPatchNotification: false
+// })
 
 const Routes = () => {
   return (
