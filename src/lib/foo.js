@@ -10,3 +10,5 @@ export const insertString = (string, insert, pos) => {
 }
 
 export const camelCase = (w) => w.charAt(0).toUpperCase() + w.slice(1)
+
+export const fileToLines = (file) => file.split('\n')

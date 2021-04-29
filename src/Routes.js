@@ -4,10 +4,6 @@ import { StandardLayout } from 'layouts'
 import * as pages from 'pages'
 import './main.css'
 
-// setConfig({
-//   showReactDomPatchNotification: false
-// })
-
 const Routes = () => {
   return (
     <>
